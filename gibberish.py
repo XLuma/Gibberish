@@ -6,7 +6,7 @@ from pymsyt import Msbt
 import deepl
 import os
 LANGUAGE = "en" #change this to your source language
-API_KEY = "7433bcab-0b64-3696-d650-e5ae709fa9b3" #add you Deepl api key here
+API_KEY = "" #add you Deepl api key here
 CYCLES = 6 #how many times text should be translated before going back to english. adjust this to taste
 languages = ["BG", "CS", "DA", "DE", "ES", "ET", "FI", "FR", "HU", "ID", "IT", "JA", "LT", "LV", "NL", "PL", "PT-PT","PT-BR", "RO", "RU", "SK", "SL", "SV", "TR", "ZH"]
 current_language = ""
