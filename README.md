@@ -3,6 +3,8 @@ Gibberish is a simple program to "poorly translate" text from msbt files. It ach
 
 It is currently broken, because Deepl costs WAY too much, and googletrans... simply doesnt work. Official apis like Google's or Microsoft's also requires actual cards, which I dont have so... deepl it is
 
+Update: found a (Rather slow) library that allows to freely translate stuff, so... thats better than nothing !!!
+
 # Dependencies
 - to use this, you will need python, deepl, pymsyt.
 
