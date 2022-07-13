@@ -1,7 +1,7 @@
-from ctypes import sizeof
-from logging import root
-from random import randrange
-import googletrans
+from random import random, randrange
+import random
+import googletrans #fuck this
+import translators as ts #i love this
 from pymsyt import Msbt
 import deepl
 import os
@@ -17,11 +17,11 @@ outdir = os.getcwd() + "\\output"
 
 def pick_language():
     i = randrange(0, len(googletrans.LANGCODES))
-    return i, googletrans.LANGCODES[i]
+    return i, random.choice(list(googletrans.LANGCODES.values()))
 
 
 def main():
-    translator = deepl.Translator(API_KEY)
+    #translator = deepl.Translator(API_KEY)
     google_trans = googletrans.Translator()
     for subdir, dirs, files in os.walk(rootdir):
         for file in files:
@@ -36,23 +36,21 @@ def main():
                         if 'text' in stuff: #lmao finally got them strings
                             currentString = stuff['text']
                             #result = translator.translate_text(currentString, target_lang=LANGUAGE)
-                            result = google_trans.translate(currentString, dest='en')
+                            result = ts.google(currentString, to_language='en')
                             for i in range(CYCLES):
                                 curent_lang_index, current_language = pick_language()
                                 #result = translator.translate_text(result.text, target_lang=current_language) #have a random function to pick a language
-                                result = google_trans.translate(result.text, dest=current_language)
+                                result = ts.google(result, to_language=current_language)
                             #outstr = translator.translate_text(result.text, target_lang=LANGUAGE)
-                            outstr = google_trans.translate(result.text, dest=LANGUAGE)
+                            outstr = ts.google(result, to_language=LANGUAGE)
                             #print(outstr.text)
                             msbt_dict["entries"][entry] = { # Adding a new text entry
-                                "contents": [{"text":outstr.text}]
+                                "contents": [{"text":outstr}]
                             }
+                            print(outstr)
             os.makedirs(outdir + str.split(subdir, "\\translate")[1], exist_ok=True)
             open(outfile, 'wb').write( Msbt.from_dict(msbt_dict).to_binary(big_endian=True))
                                 
-
-    
-
 
 if __name__ == "__main__":
     main()
